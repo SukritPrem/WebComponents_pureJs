@@ -1,4 +1,6 @@
-import { Notification, Mark } from "./dashBoardPage.js";
+import {} from "./dashBoardPage.js";
+import {} from "./profile.js";
+
 class FirstPage extends HTMLElement{
     constructor(){
         super();
@@ -24,6 +26,8 @@ class DashBoardPage extends HTMLElement{
         this.textElement.textContent = "Dash Board Page";
         this.shadow.appendChild(this.textElement)
         this.notificationElement = document.createElement("notifi-cation")
+        this.profileElement = document.createElement("pro-file")
+        this.shadow.appendChild(this.profileElement)
         this.shadow.appendChild(this.notificationElement)
         this.buttonElement = document.createElement("button");
         this.buttonElement.textContent = "Click to DashBoard";
@@ -44,7 +48,7 @@ class MainPage extends HTMLElement{
 customElements.define("main-page", MainPage);
 customElements.define("dashboard-page", DashBoardPage);
 customElements.define("first-page", FirstPage);
-customElements.define("notifi-cation", Notification);
+
 
 const componentMap = {
     "/main-page": MainPage,
@@ -75,7 +79,6 @@ function navigateToForMainPage(path){
         container.shadowRoot.removeChild(container.shadowRoot.firstChild)
         const textElement = document.createElement("first-page");
         container.shadowRoot.appendChild(textElement)
-        // console.log(container.shadowRoot.childNodes);
     }
     // if (path.indexOf("remove") > 0) {
     //   container.removeChild(container.firstChild);

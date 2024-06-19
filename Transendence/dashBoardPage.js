@@ -5,15 +5,19 @@ export class Notification extends HTMLElement{
         this.shadow = this.attachShadow({ mode: "open" });
         this.textElement = document.createElement("p");
         this.textElement.textContent = "notification";
-        console.log(this.shadow)
+        this.shadow.appendChild(this.textElement)
+    }
+}
+customElements.define("notifi-cation", Notification);
+export class MatchHistory extends HTMLElement{
+    constructor(){
+        super();
+        this.shadow = this.attachShadow({ mode: "open" });
+        this.textElement = document.createElement("p");
+        this.textElement.textContent = "match history Element";
         this.shadow.appendChild(this.textElement)
     }
 }
 
-export class Mark {
-    test(){
-        console.log("Hello mark");
-    }
-}
-
+customElements.define("match-history", MatchHistory);
 
