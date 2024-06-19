@@ -74,6 +74,7 @@ navigateTo = (path) => {
   if (component) {
     container.appendChild(document.createElement(path.replace("/", "")));
   }
+  
 };
 
 navigateTo("/shadow-one-component");
