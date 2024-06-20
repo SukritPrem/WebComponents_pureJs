@@ -19,7 +19,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 #pro-file{
-    width: 25vw;
+    background-color: rgb(245, 190, 119);
+    width: 15vw;
     /* width: 50vw; */
     /* flex-grow: 1; */
 }
@@ -30,7 +31,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 #div-middle{
-    width: 50vw;
+    width: 60vw;
     /* flex-grow: 5; */
     background-color: beige;
 }

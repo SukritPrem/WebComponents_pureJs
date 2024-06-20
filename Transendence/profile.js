@@ -1,6 +1,6 @@
 import {} from "./dashBoardPage.js";
 
-function isTag(node, tagName) {
+export function isTag(node, tagName) {
     // Ensure we're dealing with an element node
     if (node.nodeType !== Node.ELEMENT_NODE) {
       return false;
@@ -27,6 +27,12 @@ export class Profile extends HTMLElement{
         this.loginElement.addEventListener("click", () => {
             const notificationElement = document.querySelector('main-page').shadowRoot.childNodes[0].shadowRoot.querySelector("notifi-cation").shadowRoot;
             const matchHistory = document.createElement("match-history")
+            if(notificationElement.childNodes.length == 3)
+              {
+                const nodeRemove = notificationElement.childNodes[2]
+                notificationElement.removeChild(nodeRemove)
+              }
+                // 
             if(!isTag(notificationElement.lastChild,"match-history"))
                 notificationElement.appendChild(matchHistory);
         });

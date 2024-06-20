@@ -1,10 +1,12 @@
 import {} from "./friends.js"
+import {} from "./tournament.js"
+
 export class Notification extends HTMLElement{
     constructor(){
         super();
         this.shadow = this.attachShadow({ mode: "open" });
         this.textElement = document.createElement("div");
-        this.textElement.textContent = "notification";
+        // this.textElement.textContent = "notification";
 
         const css = document.createElement("link");
         css.setAttribute("rel","stylesheet");
@@ -14,13 +16,20 @@ export class Notification extends HTMLElement{
         this.shadow.appendChild(this.textElement)
     }
 }
+
 customElements.define("notifi-cation", Notification);
 export class MatchHistory extends HTMLElement{
     constructor(){
         super();
         this.shadow = this.attachShadow({ mode: "open" });
-        this.textElement = document.createElement("p");
+        this.textElement = document.createElement("div");
         this.textElement.textContent = "match history Element";
+
+        const css = document.createElement("link");
+        css.setAttribute("rel","stylesheet");
+        css.setAttribute("href","./components/matchHistory.css");
+
+        this.shadow.appendChild(css);
         this.shadow.appendChild(this.textElement)
     }
 }
@@ -45,12 +54,14 @@ export class DashBoardPage extends HTMLElement{
         
         this.profileElement = document.createElement("pro-file")
         this.profileElement.setAttribute("id","pro-file");
-        
+
         this.notificationElement = document.createElement("notifi-cation")
         const divMiddle = document.createElement("div");
         divMiddle.setAttribute("id","div-middle");
+        this.tournamentElement = document.createElement("tour-na-ment")
+        divMiddle.appendChild(this.tournamentElement);
         divMiddle.appendChild(this.notificationElement);
-      
+        
         const divRight = document.createElement("div");
         const liveChat = document.createElement("live-chat");
         const friend = document.createElement("friends-block");
