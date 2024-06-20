@@ -1,0 +1,17 @@
+.Hi{
+    height: 50vh;
+    width: 100%; /* Example width */
+    background-color: aqua;
+}
+
+.Hi1{
+    height: 50vh;
+    width: 100%; /* Example width */
+    background-color: rgb(255, 34, 0);
+}
+body {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    margin: 0; /* Remove default margin from body */
+  }

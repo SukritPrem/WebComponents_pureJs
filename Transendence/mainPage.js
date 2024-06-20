@@ -1,42 +1,47 @@
-import {} from "./dashBoardPage.js";
+import {DashBoardPage} from "./dashBoardPage.js";
 import {} from "./profile.js";
 
 class FirstPage extends HTMLElement{
     constructor(){
         super();
         this.shadow = this.attachShadow({ mode: "open" });
+        this.div = document.createElement("div");
+        this.div.setAttribute("id","firstPage")
+        const css = document.createElement("link");
+        css.setAttribute("rel","stylesheet");
+        css.setAttribute("href","./components/firstPage.css");
         this.textElement = document.createElement("p");
-        // console.log(this.textElement)
         this.textElement.textContent = "First Page";
-        this.shadow.appendChild(this.textElement)
         this.loginElement = document.createElement("button");
         this.loginElement.textContent = "Login";
         this.loginElement.addEventListener("click", () => {
           navigateToForMainPage("/dashboard-page");
         });
-        this.shadow.appendChild(this.loginElement)
+
+        this.div.appendChild(css)
+        this.div.appendChild(this.textElement)
+        this.div.appendChild(this.loginElement)
+
+        this.shadow.appendChild(this.div)
+        let divGame = document.createElement("div")
+        divGame.setAttribute("id","gameTag");
+        this.gameElement = document.createElement("p");
+        this.gameElement.textContent = "Game";
+
+        divGame.appendChild(this.gameElement)
+
+    
+        this.shadow.appendChild(divGame)
+
+        const divFooter = document.createElement("div")
+        divFooter.setAttribute("id","footer");
+        this.gameElement = document.createElement("p");
+        this.gameElement.textContent = "Footer"; 
+        divFooter.appendChild(this.gameElement)
+        this.shadow.appendChild(divFooter)
     }
 }
 
-class DashBoardPage extends HTMLElement{
-    constructor(){
-        super();
-        this.shadow = this.attachShadow({ mode: "open" });
-        this.textElement = document.createElement("p");
-        this.textElement.textContent = "Dash Board Page";
-        this.shadow.appendChild(this.textElement)
-        this.notificationElement = document.createElement("notifi-cation")
-        this.profileElement = document.createElement("pro-file")
-        this.shadow.appendChild(this.profileElement)
-        this.shadow.appendChild(this.notificationElement)
-        this.buttonElement = document.createElement("button");
-        this.buttonElement.textContent = "Click to DashBoard";
-        this.buttonElement.addEventListener("click", () => {
-          navigateToForMainPage("/first-page");
-        });
-        this.shadow.appendChild(this.buttonElement)
-    }
-}
 
 class MainPage extends HTMLElement{
     constructor(){
@@ -46,7 +51,6 @@ class MainPage extends HTMLElement{
 }
 
 customElements.define("main-page", MainPage);
-customElements.define("dashboard-page", DashBoardPage);
 customElements.define("first-page", FirstPage);
 
 
@@ -61,22 +65,17 @@ const componentMap = {
 function navigateToForMainPage(path){
     const container = document.querySelector("main-page");
 
-    // console.log(container.shadowRoot.childNodes.length)
-    if(container.shadowRoot.childNodes.length == 0)
+    if(path.indexOf("dashboard-page") > 0)
     {
-        const textElement = document.createElement("first-page");
-        container.shadowRoot.appendChild(textElement);
-        // console.log(container.shadowRoot.childNodes)
-    }
-    else if(path.indexOf("dashboard-page") > 0)
-    {
-        container.shadowRoot.removeChild(container.shadowRoot.firstChild)
+        if(container.shadowRoot.hasChildNodes())
+            container.shadowRoot.removeChild(container.shadowRoot.firstChild)
         const textElement = document.createElement("dashBoard-page");
         container.shadowRoot.appendChild(textElement);
     }
     else if(path.indexOf("first-page") > 0)
     {
-        container.shadowRoot.removeChild(container.shadowRoot.firstChild)
+        if(container.shadowRoot.hasChildNodes())
+            container.shadowRoot.removeChild(container.shadowRoot.firstChild)
         const textElement = document.createElement("first-page");
         container.shadowRoot.appendChild(textElement)
     }
@@ -92,4 +91,5 @@ function navigateToForMainPage(path){
   };
   
 // navigateToForMainPage("/first-page")
-navigateToForMainPage("/first-page")
+// navigateToForMainPage("/first-page") //for real
+navigateToForMainPage("/dashboard-page")

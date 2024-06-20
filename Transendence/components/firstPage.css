@@ -1,0 +1,32 @@
+#firstPage{
+    width: 100%;
+    height: 10vh;
+    background-color: aquamarine;
+}
+
+#firstPage p{
+    margin: 0px
+}
+#gameTag{
+    width: 100%;
+    height: 85vh;
+    margin-bottom: 0;
+    background-color: rgb(255, 210, 127);
+}
+
+#gameTag p {
+    margin: 0px;
+}
+
+#footer{
+    width: 100%;
+    height: 5vh;
+    background-color: rgb(127, 255, 159);
+}
+
+#footer p{
+    margin: 0px;
+}
+body{
+    margin: 0;
+}
