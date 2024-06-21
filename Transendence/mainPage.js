@@ -4,12 +4,17 @@ import {} from "./profile.js";
 class FirstPage extends HTMLElement{
     constructor(){
         super();
+    }
+    
+    connectedCallback(){
         this.shadow = this.attachShadow({ mode: "open" });
         this.div = document.createElement("div");
         this.div.setAttribute("id","firstPage")
+
         const css = document.createElement("link");
         css.setAttribute("rel","stylesheet");
         css.setAttribute("href","./components/firstPage.css");
+
         this.textElement = document.createElement("p");
         this.textElement.textContent = "First Page";
         this.loginElement = document.createElement("button");

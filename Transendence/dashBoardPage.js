@@ -1,9 +1,12 @@
 import {} from "./friends.js"
 import {} from "./tournament.js"
-
+import { isTag} from "./profile.js"
 export class Notification extends HTMLElement{
     constructor(){
         super();
+    }
+
+    connectedCallback(){
         this.shadow = this.attachShadow({ mode: "open" });
         this.textElement = document.createElement("div");
         // this.textElement.textContent = "notification";
@@ -17,10 +20,27 @@ export class Notification extends HTMLElement{
     }
 }
 
+export function changeNotification(element){
+    const notificationElement = document.querySelector('main-page').shadowRoot.childNodes[0].shadowRoot.querySelector("notifi-cation").shadowRoot;
+    // console.log(notificationElement.childNodes);
+    if(notificationElement.childNodes.length == 3)
+    {
+        const nodeRemove = notificationElement.childNodes[2]
+        notificationElement.removeChild(nodeRemove)
+    }
+    const matchHistory = document.createElement(element)
+    if(!isTag(notificationElement.lastChild, element))
+        notificationElement.appendChild(matchHistory);
+}
+
+
 customElements.define("notifi-cation", Notification);
 export class MatchHistory extends HTMLElement{
     constructor(){
         super();
+    }
+
+    connectedCallback(){
         this.shadow = this.attachShadow({ mode: "open" });
         this.textElement = document.createElement("div");
         this.textElement.textContent = "match history Element";
@@ -32,12 +52,19 @@ export class MatchHistory extends HTMLElement{
         this.shadow.appendChild(css);
         this.shadow.appendChild(this.textElement)
     }
+
+    disconnectedCallback(){
+        console.log("delete match history components")
+    }
 }
 
 
 export class DashBoardPage extends HTMLElement{
     constructor(){
         super();
+    }
+
+    connectedCallback(){
         this.shadow = this.attachShadow({ mode: "open" });
         this.navElement = document.createElement("div");
         this.navElement.textContent = "nav bar";

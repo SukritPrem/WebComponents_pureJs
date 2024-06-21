@@ -1,9 +1,13 @@
 
-import { isTag} from "./profile.js"
-  
+// import { isTag} from "./profile.js"
+import { changeNotification } from "./dashBoardPage.js";
+
 export class Friends extends HTMLElement{
     constructor(){
         super();
+    }
+
+    connectedCallback(){
         this.shadow = this.attachShadow({ mode: "open" });
         this.textElement = document.createElement("div");
         this.textElement.textContent = "Friends";
@@ -15,16 +19,7 @@ export class Friends extends HTMLElement{
         this.findFriends = document.createElement("button");
         this.findFriends.textContent = "Find Friends"
         this.findFriends.addEventListener("click",() =>{
-            const notificationElement = document.querySelector('main-page').shadowRoot.childNodes[0].shadowRoot.querySelector("notifi-cation").shadowRoot;
-            
-            if(notificationElement.childNodes.length == 3)
-            {
-                const nodeRemove = notificationElement.childNodes[2]
-                notificationElement.removeChild(nodeRemove)
-            }
-            const matchHistory = document.createElement("recommends-friends")
-            if(!isTag(notificationElement.lastChild,"recommends-friends"))
-                notificationElement.appendChild(matchHistory);
+            changeNotification("recommends-friends")
         })
         this.textElement.appendChild(this.findFriends)
         this.shadow.appendChild(css);
@@ -35,6 +30,9 @@ export class Friends extends HTMLElement{
 export class LiveChat extends HTMLElement{
     constructor(){
         super();
+    }
+
+    connectedCallback(){
         this.shadow = this.attachShadow({ mode: "open" });
         this.textElement = document.createElement("div");
         this.textElement.textContent = "Live Chat";
@@ -49,9 +47,12 @@ export class LiveChat extends HTMLElement{
 export class RecommentFriends extends HTMLElement{
     constructor(){
         super();
+    }
+
+    connectedCallback(){
         this.shadow = this.attachShadow({ mode: "open" });
         this.textElement = document.createElement("div");
-        this.textElement.textContent = "List All Friends";
+        this.textElement.textContent = "RecommentFriends";
 
         const css = document.createElement("link");
         css.setAttribute("rel","stylesheet");
@@ -59,6 +60,10 @@ export class RecommentFriends extends HTMLElement{
 
         this.shadow.appendChild(css);
         this.shadow.appendChild(this.textElement)
+    }
+
+    disconnectedCallback(){
+        // console.log("delete")
     }
 }
 
